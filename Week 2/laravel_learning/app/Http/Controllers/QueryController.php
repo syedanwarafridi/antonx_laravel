@@ -42,11 +42,11 @@ class QueryController extends Controller
         // Carbon library, which is a popular date and time manipulation library in Laravel.
         // using ORM
             $users = User::select('*')->whereDate('created_at', Carbon::today())->get();
-            $user = $this->one_record();
+            //$user = $this->one_record();
         // using query builder
         //$users = DB::select('*')whereDate('created_at', DB::raw('CURDATE()'))->get();
 
-            return view('queries', ['users'=>$users, 'user'=>$user]);
+            return view('queries', ['users'=>$users]);
             //return redirect()->route('TodayRecord');
     }
 
@@ -67,7 +67,6 @@ class QueryController extends Controller
         return $last_5;
     
     }
-
 
     public function diff_users(){
         $diff = User::skip(5)->take(3)->get();

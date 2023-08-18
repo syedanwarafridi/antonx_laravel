@@ -29,13 +29,13 @@ class UserController extends Controller
     }
 
     public function total_users(){
+
         $totalUsers = User::count();
         $totalActiveUsers = User::where('is_active', true)->count();
         $totalInActiveUsers = $totalUsers - $totalActiveUsers;
 
         $trashedUsers = User::onlyTrashed()->get();
         $users = User::orderBy('created_at', 'desc')->get();
-
 
         return view('user_page', compact('totalUsers', 'totalActiveUsers', 'totalInActiveUsers', 'users', 'trashedUsers'));
         }
